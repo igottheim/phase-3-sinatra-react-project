@@ -6,14 +6,15 @@ class User < ActiveRecord::Base
     has_many :categories, through: :tasks
     
     # users.password_hash in the database is a :string
-#   include BCrypt
+  include BCrypt
 
-#   def password
-#     @password ||= Password.new(password_hash)
-#   end
+  def login
+    user = User.find_by(first_name: params[:first_name])
+    if user.password == params[:password]
+      give_token
+    else
+      redirect_to home_url
+    end
+  end
 
-#   def password=(new_password)
-#     @password = Password.create(new_password)
-#     self.password_hash = @password
-#   end
 end
