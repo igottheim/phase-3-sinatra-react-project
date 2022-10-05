@@ -1,4 +1,5 @@
 class ApplicationController < Sinatra::Base
+  require 'bcrypt'
   set :default_content_type, 'application/json'
   
   # Add your routes here
@@ -62,7 +63,8 @@ delete '/tasks/:id' do
 end
 
 post '/users' do
-  user = User.create(first_name: params[:first_name], last_name: params[:last_name], password: params[:password], username: params[:username])
+  
+  user = User.create(first_name: params[:first_name], last_name: params[:last_name], password:  params[:password], username: params[:username])
   user.to_json
 end
 end

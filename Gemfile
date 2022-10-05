@@ -5,7 +5,7 @@ source "https://rubygems.org"
 gem "sinatra", "~> 2.1"
 
 
-gem "bcrypt"
+gem 'bcrypt', '~> 3.1.7'
 
 # A fast and simple web server
 # https://github.com/macournoyer/thin
