@@ -3,7 +3,12 @@ class ApplicationController < Sinatra::Base
   
   # Add your routes here
   get "/users" do
-    users = User.where(first_name: params[:first_name], last_name:params[:last_name], password: params[:password])
+    users = User.where(first_name: params[:first_name], last_name:params[:last_name], password: params[:password], username: params[:username])
+    users.to_json
+  end
+
+  get "/users1" do
+    users = User.all
     users.to_json
   end
 
@@ -52,7 +57,7 @@ delete '/tasks/:id' do
 end
 
 post '/users' do
-  user = User.create(first_name: params[:first_name], last_name: params[:last_name], password: params[:password])
+  user = User.create(first_name: params[:first_name], last_name: params[:last_name], password: params[:password], username: params[:username])
   user.to_json
 end
 end

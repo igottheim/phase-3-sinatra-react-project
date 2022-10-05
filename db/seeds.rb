@@ -12,14 +12,14 @@ Category.create(name: "Backyard")
 Category.create(name: "Car")
 
 puts "Creating user..."
-User.create(first_name: "Leon", last_name: "Wong", password: "cool")
-User.create(first_name: "Ian", last_name: "Gottheim", password: "woo")
-User.create(first_name: "Parry", last_name: "Huang", password: "poo")
-User.create(first_name: "Bob", last_name: "Dickinson", password: "something")
-User.create(first_name: "Patrick", last_name: "Star", password: "cone")
-User.create(first_name: "Matt", last_name: "Garcia", password: "taco")
-User.create(first_name: "Franky", last_name: "Liu", password: "stone")
-User.create(first_name: "Kerry", last_name: "Sasd", password: "asdaf")
+User.create(first_name: "Leon", last_name: "Wong", password: "cool", username: "Leon25")
+User.create(first_name: "Ian", last_name: "Gottheim", password: "woo",username: "Ian10")
+User.create(first_name: "Parry", last_name: "Huang", password: "poo", username: "Parrycool")
+User.create(first_name: "Bob", last_name: "Dickinson", password: "something", username: "Bob")
+User.create(first_name: "Patrick", last_name: "Star", password: "cone", username: "spongebob")
+User.create(first_name: "Matt", last_name: "Garcia", password: "taco", username: "taco")
+User.create(first_name: "Franky", last_name: "Liu", password: "stone", username: "stone")
+User.create(first_name: "Kerry", last_name: "Sasd", password: "asdaf", username:"fun")
 
 puts "Creating task..."
 Task.create(name: "Clean Sink", user_id: 1, category_id: 1, priority: 1, completed?:false)
