@@ -7,6 +7,11 @@ class ApplicationController < Sinatra::Base
     users.to_json
   end
 
+  get "/usersFind" do
+    users = User.where(username: params[:username])
+    users.to_json
+  end
+
   get "/users1" do
     users = User.all
     users.to_json
