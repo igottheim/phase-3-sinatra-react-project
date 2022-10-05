@@ -4,8 +4,14 @@ class ApplicationController < Sinatra::Base
   
   # Add your routes here
   get "/users" do
-    users = User.where(first_name: params[:first_name], last_name:params[:last_name], password: params[:password], username: params[:username])
-    users.to_json
+    # users = User.where(first_name: params[:first_name], last_name:params[:last_name], password_digest: params[:password_digest], username: params[:username])
+    user = User.find_by(:username => params[:username])
+
+    if user && user.authenticate(params[:password_digest])
+      user.to_json
+    else
+        [].to_json
+    end
   end
 
   get "/usersFind" do
@@ -45,26 +51,28 @@ class ApplicationController < Sinatra::Base
     task.to_json
   end
 
- post "/tasks" do
-  task = Task.create(name: params[:name], user_id: params[:user_id], category_id: params[:category_id], priority: params[:priority], completed?: params[:completed?])
-  task.to_json 
-end 
+  post "/tasks" do
+    task = Task.create(name: params[:name], user_id: params[:user_id], category_id: params[:category_id], priority: params[:priority], completed?: params[:completed?])
+    task.to_json 
+  end 
 
-patch '/tasks/:id' do
-  task = Task.find(params[:id])
-  task.update(name: params[:name], priority: params[:priority], completed?: params[:completed?] )
-  task.to_json
-end
+  patch '/tasks/:id' do
+    task = Task.find(params[:id])
+    task.update(name: params[:name], priority: params[:priority], completed?: params[:completed?] )
+    task.to_json
+  end
 
-delete '/tasks/:id' do
-  task = Task.find(params[:id])
-  task.destroy
-  task.to_json
-end
+  delete '/tasks/:id' do
+    task = Task.find(params[:id])
+    task.destroy
+    task.to_json
+  end
 
-post '/users' do
+  post '/users' do
+    
+    user = User.create(first_name: params[:first_name], last_name: params[:last_name], password:  params[:password], username: params[:username])
+    user.to_json
+  end
   
-  user = User.create(first_name: params[:first_name], last_name: params[:last_name], password:  params[:password], username: params[:username])
-  user.to_json
 end
-end
+
