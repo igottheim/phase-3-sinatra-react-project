@@ -56,6 +56,11 @@ class ApplicationController < Sinatra::Base
     task.to_json 
   end 
 
+  post "/categories" do
+    category = Category.create(name: params[:name])
+   category.to_json 
+  end 
+
   patch '/tasks/:id' do
     task = Task.find(params[:id])
     task.update(name: params[:name], priority: params[:priority], completed?: params[:completed?] )
